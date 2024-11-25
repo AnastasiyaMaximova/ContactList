@@ -15,17 +15,24 @@ struct Person {
     var fullName: String {
         "\(name) \(surname)"
     }
+    
     static func getPersonList() -> [Person]{
         let dataStore = DataStore()
         var personList = [Person]()
         for _ in dataStore.names {
-            personList.append(Person(name: dataStore.names.randomElement() ?? "",
-                                     surname: dataStore.surnames.randomElement() ?? "",
-                                     phone: dataStore.phons.randomElement() ?? "",
-                                     email: dataStore.emails.randomElement() ?? ""
+            personList.append(Person(name: getRandomElement(from: &dataStore.names),
+                                     surname: getRandomElement(from: &dataStore.surnames),
+                                     phone: getRandomElement(from: &dataStore.phons),
+                                     email: getRandomElement(from: &dataStore.emails)
                                     )
                               )
         }
         return personList
+    }
+    
+  static func getRandomElement(from elements: inout [String]) -> String {
+        let randomElement = elements.randomElement() ?? ""
+        elements = elements.filter(){$0 != randomElement}
+        return randomElement
     }
 }
