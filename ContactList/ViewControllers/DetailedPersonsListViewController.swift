@@ -10,11 +10,7 @@ import UIKit
 final class DetailedPersonsListViewController: UITableViewController {
     
     var persons: [Person]!
-}
 
-//MARK: - Set cell configuration
-extension DetailedPersonsListViewController {
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         persons.count
     }
