@@ -30,7 +30,7 @@ struct Person {
         return personList
     }
     
-  static func getRandomElement(from elements: inout [String]) -> String {
+    private static func getRandomElement(from elements: inout [String]) -> String {
         let randomElement = elements.randomElement() ?? ""
         elements = elements.filter(){$0 != randomElement}
         return randomElement
